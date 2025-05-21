@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "product",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "productName": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "productName"
+    },
+    "description": {
+      "type": "text"
+    },
+    "img": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "unidadMedida": {
+      "type": "enumeration",
+      "enum": [
+        "KG ",
+        "Planchas ",
+        "Unidad"
+      ]
+    },
+    "taste": {
+      "type": "enumeration",
+      "enum": [
+        "Fideos ",
+        "Sorrentinos ",
+        "Ravioles ",
+        "Especiales ",
+        "noquis ",
+        "canelones",
+        "Filetto",
+        "Queso",
+        "Flan\t",
+        "Chocotorta",
+        "Pastafrola"
+      ]
+    },
+    "isFeatured": {
+      "type": "boolean"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "descriptionCorta": {
+      "type": "string"
+    },
+    "isOffer": {
+      "type": "boolean"
+    }
+  }
+}
