@@ -421,6 +421,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     description: Schema.Attribute.Text;
     descriptionCorta: Schema.Attribute.String;
     img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    img_carousel: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     isFeatured: Schema.Attribute.Boolean;
     isOffer: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
