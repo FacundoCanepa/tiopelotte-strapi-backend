@@ -435,20 +435,20 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     slug: Schema.Attribute.UID<'productName'>;
     taste: Schema.Attribute.Enumeration<
       [
-        'Fideos ',
-        'Sorrentinos ',
-        'Ravioles ',
-        'Especiales ',
-        'noquis ',
+        'fideos',
+        'sorrentinos',
+        'ravioles',
+        'especiales',
+        '\u00F1oquis',
         'canelones',
-        'Filetto',
-        'Queso',
-        'Flan\t',
-        'Chocotorta',
-        'Pastafrola',
+        'filetto',
+        'queso',
+        'flan',
+        'chocotorta',
+        'pastafrola',
       ]
     >;
-    unidadMedida: Schema.Attribute.Enumeration<['KG ', 'Planchas ', 'Unidad']>;
+    unidadMedida: Schema.Attribute.Enumeration<['kg', 'planchas', 'unidad']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

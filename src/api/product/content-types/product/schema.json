@@ -42,25 +42,25 @@
     "unidadMedida": {
       "type": "enumeration",
       "enum": [
-        "KG ",
-        "Planchas ",
-        "Unidad"
+        "kg",
+        "planchas",
+        "unidad"
       ]
     },
     "taste": {
       "type": "enumeration",
       "enum": [
-        "Fideos ",
-        "Sorrentinos ",
-        "Ravioles ",
-        "Especiales ",
-        "noquis ",
+        "fideos",
+        "sorrentinos",
+        "ravioles",
+        "especiales",
+        "ñoquis",
         "canelones",
-        "Filetto",
-        "Queso",
-        "Flan\t",
-        "Chocotorta",
-        "Pastafrola"
+        "filetto",
+        "queso",
+        "flan",
+        "chocotorta",
+        "pastafrola"
       ]
     },
     "isFeatured": {
