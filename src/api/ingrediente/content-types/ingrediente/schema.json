@@ -28,6 +28,9 @@
     },
     "precio": {
       "type": "decimal"
+    },
+    "stockUpdatedAt": {
+      "type": "datetime"
     }
   }
 }

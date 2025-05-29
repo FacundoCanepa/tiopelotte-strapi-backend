@@ -427,6 +427,7 @@ export interface ApiIngredienteIngrediente extends Struct.CollectionTypeSchema {
     products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     Stock: Schema.Attribute.Decimal;
+    stockUpdatedAt: Schema.Attribute.DateTime;
     unidadMedida: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
