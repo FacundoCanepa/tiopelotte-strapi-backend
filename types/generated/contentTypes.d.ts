@@ -423,6 +423,7 @@ export interface ApiIngredienteIngrediente extends Struct.CollectionTypeSchema {
       'api::ingrediente.ingrediente'
     > &
       Schema.Attribute.Private;
+    precio: Schema.Attribute.Decimal;
     products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     Stock: Schema.Attribute.Decimal;
@@ -474,6 +475,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'productName'>;
     stock: Schema.Attribute.Decimal;
+    stockUpdatedAt: Schema.Attribute.DateTime;
     taste: Schema.Attribute.Enumeration<
       [
         'fideos',

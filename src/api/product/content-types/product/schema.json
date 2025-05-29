@@ -96,6 +96,9 @@
       "relation": "manyToMany",
       "target": "api::ingrediente.ingrediente",
       "inversedBy": "products"
+    },
+    "stockUpdatedAt": {
+      "type": "datetime"
     }
   }
 }
