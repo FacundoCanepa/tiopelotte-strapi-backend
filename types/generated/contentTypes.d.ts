@@ -471,6 +471,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'api::product.product'
     > &
       Schema.Attribute.Private;
+    porciones: Schema.Attribute.String;
     price: Schema.Attribute.Decimal;
     productName: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
@@ -492,6 +493,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
         'pastafrola',
       ]
     >;
+    tiempoEstimado: Schema.Attribute.String;
     unidadMedida: Schema.Attribute.Enumeration<['kg', 'planchas', 'unidad']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
