@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ingredientes",
+  "info": {
+    "singularName": "ingrediente",
+    "pluralName": "ingredientes",
+    "displayName": "ingrediente",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "ingredienteName": {
+      "type": "string"
+    },
+    "Stock": {
+      "type": "decimal"
+    },
+    "unidadMedida": {
+      "type": "string"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "mappedBy": "ingredientes"
+    }
+  }
+}

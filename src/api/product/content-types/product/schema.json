@@ -78,14 +78,24 @@
       "type": "boolean"
     },
     "img_carousel": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "stock": {
+      "type": "decimal"
+    },
+    "ingredientes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::ingrediente.ingrediente",
+      "inversedBy": "products"
     }
   }
 }
