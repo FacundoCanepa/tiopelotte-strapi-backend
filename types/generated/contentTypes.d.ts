@@ -475,6 +475,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     price: Schema.Attribute.Decimal;
     productName: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    recetas: Schema.Attribute.Relation<'manyToMany', 'api::receta.receta'>;
     slug: Schema.Attribute.UID<'productName'>;
     stock: Schema.Attribute.Decimal;
     stockUpdatedAt: Schema.Attribute.DateTime;
@@ -495,6 +496,41 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     >;
     tiempoEstimado: Schema.Attribute.String;
     unidadMedida: Schema.Attribute.Enumeration<['kg', 'planchas', 'unidad']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiRecetaReceta extends Struct.CollectionTypeSchema {
+  collectionName: 'recetas';
+  info: {
+    description: '';
+    displayName: 'receta';
+    pluralName: 'recetas';
+    singularName: 'receta';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.Text;
+    img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::receta.receta'
+    > &
+      Schema.Attribute.Private;
+    porciones: Schema.Attribute.String;
+    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'titulo'>;
+    tiempo: Schema.Attribute.String;
+    titulo: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1013,6 +1049,7 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::ingrediente.ingrediente': ApiIngredienteIngrediente;
       'api::product.product': ApiProductProduct;
+      'api::receta.receta': ApiRecetaReceta;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
