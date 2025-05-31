@@ -46,7 +46,7 @@
       "inversedBy": "recetas"
     },
     "preparacion": {
-      "type": "blocks"
+      "type": "text"
     }
   }
 }

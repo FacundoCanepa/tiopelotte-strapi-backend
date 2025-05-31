@@ -526,7 +526,7 @@ export interface ApiRecetaReceta extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     porciones: Schema.Attribute.String;
-    preparacion: Schema.Attribute.Blocks;
+    preparacion: Schema.Attribute.Text;
     products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'titulo'>;
