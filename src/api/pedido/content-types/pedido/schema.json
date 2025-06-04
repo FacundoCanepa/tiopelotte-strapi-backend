@@ -4,7 +4,8 @@
   "info": {
     "singularName": "pedido",
     "pluralName": "pedidos",
-    "displayName": "pedido"
+    "displayName": "pedido",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -63,6 +64,12 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "pedidos"
+    },
+    "telefono": {
+      "type": "biginteger"
+    },
+    "nombreApellido": {
+      "type": "string"
     }
   }
 }

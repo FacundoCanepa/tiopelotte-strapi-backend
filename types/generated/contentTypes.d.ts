@@ -438,6 +438,7 @@ export interface ApiIngredienteIngrediente extends Struct.CollectionTypeSchema {
 export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
   collectionName: 'pedidos';
   info: {
+    description: '';
     displayName: 'pedido';
     pluralName: 'pedidos';
     singularName: 'pedido';
@@ -460,8 +461,10 @@ export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
       'api::pedido.pedido'
     > &
       Schema.Attribute.Private;
+    nombreApellido: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     referencias: Schema.Attribute.Text;
+    telefono: Schema.Attribute.BigInteger;
     total: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
