@@ -435,6 +435,70 @@ export interface ApiIngredienteIngrediente extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
+  collectionName: 'pedidos';
+  info: {
+    displayName: 'pedido';
+    pluralName: 'pedidos';
+    singularName: 'pedido';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    direccion: Schema.Attribute.String;
+    estado: Schema.Attribute.Enumeration<
+      ['En camino ', 'Pendiente', 'Entregado', 'Cancelado']
+    >;
+    items: Schema.Attribute.JSON;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pedido.pedido'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    referencias: Schema.Attribute.Text;
+    total: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    zona: Schema.Attribute.Enumeration<
+      [
+        'Etcheverry 2',
+        'Etcheverry 1',
+        'Olmos',
+        'ruta 36 y 197',
+        'los hornos 1',
+        'los hornos 2',
+        'los hornos 3',
+        'Calle 62 y 248',
+        'Barrio Los Cachorros',
+        'El rodeo',
+        'Area 60',
+        'Miralagos',
+        'Campos de Roca I y II',
+        'Haras del SUR I',
+        'Haras del SUR II',
+        'Haras del SUR III',
+        'Posada de los Lagos',
+        'Abasto',
+        'Abasto 2',
+        'Club de campo La Torre',
+        'Romero',
+        'Romero II',
+      ]
+    >;
+  };
+}
+
 export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'products';
   info: {
@@ -993,7 +1057,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1018,6 +1081,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    pedidos: Schema.Attribute.Relation<'oneToMany', 'api::pedido.pedido'>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1049,6 +1113,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::category.category': ApiCategoryCategory;
       'api::ingrediente.ingrediente': ApiIngredienteIngrediente;
+      'api::pedido.pedido': ApiPedidoPedido;
       'api::product.product': ApiProductProduct;
       'api::receta.receta': ApiRecetaReceta;
       'plugin::content-releases.release': PluginContentReleasesRelease;
