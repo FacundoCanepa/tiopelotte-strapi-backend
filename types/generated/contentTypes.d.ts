@@ -470,7 +470,7 @@ export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     user: Schema.Attribute.Relation<
-      'manyToOne',
+      'oneToMany',
       'plugin::users-permissions.user'
     >;
     zona: Schema.Attribute.Enumeration<
@@ -1084,7 +1084,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
-    pedidos: Schema.Attribute.Relation<'oneToMany', 'api::pedido.pedido'>;
+    pedido: Schema.Attribute.Relation<'manyToOne', 'api::pedido.pedido'>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;

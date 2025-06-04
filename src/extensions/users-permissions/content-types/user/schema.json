@@ -65,11 +65,11 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "pedidos": {
+    "pedido": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::pedido.pedido",
-      "mappedBy": "user"
+      "inversedBy": "user"
     }
   }
 }

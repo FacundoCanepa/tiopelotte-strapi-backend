@@ -59,17 +59,17 @@
     "referencias": {
       "type": "text"
     },
-    "user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "pedidos"
-    },
     "telefono": {
       "type": "biginteger"
     },
     "nombreApellido": {
       "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "pedido"
     }
   }
 }
