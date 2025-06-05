@@ -1068,6 +1068,7 @@ export interface PluginUsersPermissionsUser
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    direccion: Schema.Attribute.String;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -1092,6 +1093,7 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    telefono: Schema.Attribute.BigInteger;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1101,6 +1103,32 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 3;
       }>;
+    zona: Schema.Attribute.Enumeration<
+      [
+        'Etcheverry 2',
+        'Etcheverry 1',
+        'Olmos',
+        'ruta 36 y 197',
+        'los hornos 1',
+        'los hornos 2',
+        'los hornos 3',
+        'Calle 62 y 248',
+        'Barrio Los Cachorros',
+        'El rodeo',
+        'Area 60',
+        'Miralagos',
+        'Campos de Roca I y II',
+        'Haras del SUR I',
+        'Haras del SUR II',
+        'Haras del SUR III',
+        'Posada de los Lagos',
+        'Abasto',
+        'Abasto 2',
+        'Club de campo La Torre',
+        'Romero',
+        'Romero II',
+      ]
+    >;
   };
 }
 
