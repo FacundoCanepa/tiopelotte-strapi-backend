@@ -103,6 +103,9 @@
         "Romero",
         "Romero II"
       ]
+    },
+    "referencias": {
+      "type": "text"
     }
   }
 }

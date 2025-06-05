@@ -1088,6 +1088,7 @@ export interface PluginUsersPermissionsUser
     pedido: Schema.Attribute.Relation<'manyToOne', 'api::pedido.pedido'>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    referencias: Schema.Attribute.Text;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',
