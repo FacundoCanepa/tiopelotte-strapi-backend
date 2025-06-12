@@ -20,7 +20,7 @@
     "estado": {
       "type": "enumeration",
       "enum": [
-        "En camino ",
+        "En camino",
         "Pendiente",
         "Entregado",
         "Cancelado"
@@ -65,11 +65,31 @@
     "nombreApellido": {
       "type": "string"
     },
+    "metodoPago": {
+      "type": "enumeration",
+      "enum": ["mercado_pago", "efectivo"]
+    },
+    "montoSenia": {
+      "type": "decimal"
+    },
+    "estadoPago": {
+      "type": "enumeration",
+      "enum": ["pendiente", "aprobado", "rechazado", "efectivo"]
+    },
+    "idPagoMP": {
+      "type": "string"
+    },
+    "statusMP": {
+      "type": "string"
+    },
+    "fecha": {
+      "type": "datetime"
+    },
     "user": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
-      "mappedBy": "pedido"
+      "inversedBy": "pedidos"
     }
   }
 }
