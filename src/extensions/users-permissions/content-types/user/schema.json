@@ -65,12 +65,6 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "pedido": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::pedido.pedido",
-      "inversedBy": "user"
-    },
     "telefono": {
       "type": "biginteger"
     },

@@ -452,8 +452,9 @@ export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     direccion: Schema.Attribute.String;
     estado: Schema.Attribute.Enumeration<
-      ['En camino ', 'Pendiente', 'Entregado', 'Cancelado']
-    >;
+      ['Pendiente', 'En camino', 'Entregado', 'Cancelado']
+    > &
+      Schema.Attribute.DefaultTo<'Pendiente'>;
     items: Schema.Attribute.JSON;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -461,44 +462,18 @@ export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
       'api::pedido.pedido'
     > &
       Schema.Attribute.Private;
-    nombreApellido: Schema.Attribute.String;
+    nombre: Schema.Attribute.String;
+    payment_id: Schema.Attribute.String & Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
     referencias: Schema.Attribute.Text;
     telefono: Schema.Attribute.BigInteger;
+    tipoEntrega: Schema.Attribute.Enumeration<['domicilio', 'local']>;
+    tipoPago: Schema.Attribute.Enumeration<['mercado_pago', 'efectivo']>;
     total: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<
-      'oneToMany',
-      'plugin::users-permissions.user'
-    >;
-    zona: Schema.Attribute.Enumeration<
-      [
-        'Etcheverry 2',
-        'Etcheverry 1',
-        'Olmos',
-        'ruta 36 y 197',
-        'los hornos 1',
-        'los hornos 2',
-        'los hornos 3',
-        'Calle 62 y 248',
-        'Barrio Los Cachorros',
-        'El rodeo',
-        'Area 60',
-        'Miralagos',
-        'Campos de Roca I y II',
-        'Haras del SUR I',
-        'Haras del SUR II',
-        'Haras del SUR III',
-        'Posada de los Lagos',
-        'Abasto',
-        'Abasto 2',
-        'Club de campo La Torre',
-        'Romero',
-        'Romero II',
-      ]
-    >;
+    zona: Schema.Attribute.String;
   };
 }
 
@@ -1085,7 +1060,6 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
-    pedido: Schema.Attribute.Relation<'manyToOne', 'api::pedido.pedido'>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     referencias: Schema.Attribute.Text;

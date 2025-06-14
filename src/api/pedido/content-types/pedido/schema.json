@@ -19,39 +19,11 @@
     },
     "estado": {
       "type": "enumeration",
-      "enum": [
-        "En camino",
-        "Pendiente",
-        "Entregado",
-        "Cancelado"
-      ]
+      "enum": ["Pendiente", "En camino", "Entregado", "Cancelado"],
+      "default": "Pendiente"
     },
     "zona": {
-      "type": "enumeration",
-      "enum": [
-        "Etcheverry 2",
-        "Etcheverry 1",
-        "Olmos",
-        "ruta 36 y 197",
-        "los hornos 1",
-        "los hornos 2",
-        "los hornos 3",
-        "Calle 62 y 248",
-        "Barrio Los Cachorros",
-        "El rodeo",
-        "Area 60",
-        "Miralagos",
-        "Campos de Roca I y II",
-        "Haras del SUR I",
-        "Haras del SUR II",
-        "Haras del SUR III",
-        "Posada de los Lagos",
-        "Abasto",
-        "Abasto 2",
-        "Club de campo La Torre",
-        "Romero",
-        "Romero II"
-      ]
+      "type": "string"
     },
     "direccion": {
       "type": "string"
@@ -62,28 +34,20 @@
     "telefono": {
       "type": "biginteger"
     },
-    "nombreApellido": {
+    "nombre": {
       "type": "string"
     },
-    "metodoPago": {
+    "tipoEntrega": {
+      "type": "enumeration",
+      "enum": ["domicilio", "local"]
+    },
+    "tipoPago": {
       "type": "enumeration",
       "enum": ["mercado_pago", "efectivo"]
     },
-    "montoSenia": {
-      "type": "decimal"
-    },
-    "estadoPago": {
-      "type": "enumeration",
-      "enum": ["pendiente", "aprobado", "rechazado", "efectivo"]
-    },
-    "idPagoMP": {
-      "type": "string"
-    },
-    "statusMP": {
-      "type": "string"
-    },
-    "fecha": {
-      "type": "datetime"
+    "payment_id": {
+      "type": "string",
+      "unique": true
     }
   }
 }
