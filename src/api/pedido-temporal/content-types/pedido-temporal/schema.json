@@ -1,13 +1,12 @@
 {
   "kind": "collectionType",
-  "collectionName": "pedidos",
+  "collectionName": "pedido_temporals",
   "info": {
-    "singularName": "pedido",
-    "pluralName": "pedidos",
-    "displayName": "pedido",
-    "description": ""
+    "singularName": "pedido-temporal",
+    "pluralName": "pedido-temporals",
+    "displayName": "pedido-temporal"
   },
-  "options": {
+ "options": {
     "draftAndPublish": true
   },
   "attributes": {

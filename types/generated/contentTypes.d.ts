@@ -435,6 +435,49 @@ export interface ApiIngredienteIngrediente extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPedidoTemporalPedidoTemporal
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'pedido_temporals';
+  info: {
+    displayName: 'pedido-temporal';
+    pluralName: 'pedido-temporals';
+    singularName: 'pedido-temporal';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    direccion: Schema.Attribute.String;
+    estado: Schema.Attribute.Enumeration<
+      ['Pendiente', 'En camino', 'Entregado', 'Cancelado']
+    > &
+      Schema.Attribute.DefaultTo<'Pendiente'>;
+    items: Schema.Attribute.JSON;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pedido-temporal.pedido-temporal'
+    > &
+      Schema.Attribute.Private;
+    nombre: Schema.Attribute.String;
+    payment_id: Schema.Attribute.String & Schema.Attribute.Unique;
+    pedidoToken: Schema.Attribute.UID;
+    publishedAt: Schema.Attribute.DateTime;
+    referencias: Schema.Attribute.Text;
+    telefono: Schema.Attribute.BigInteger;
+    tipoEntrega: Schema.Attribute.Enumeration<['domicilio', 'local']>;
+    tipoPago: Schema.Attribute.Enumeration<['mercado_pago', 'efectivo']>;
+    total: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    zona: Schema.Attribute.String;
+  };
+}
+
 export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
   collectionName: 'pedidos';
   info: {
@@ -464,6 +507,7 @@ export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     nombre: Schema.Attribute.String;
     payment_id: Schema.Attribute.String & Schema.Attribute.Unique;
+    pedidoToken: Schema.Attribute.UID;
     publishedAt: Schema.Attribute.DateTime;
     referencias: Schema.Attribute.Text;
     telefono: Schema.Attribute.BigInteger;
@@ -1119,6 +1163,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::category.category': ApiCategoryCategory;
       'api::ingrediente.ingrediente': ApiIngredienteIngrediente;
+      'api::pedido-temporal.pedido-temporal': ApiPedidoTemporalPedidoTemporal;
       'api::pedido.pedido': ApiPedidoPedido;
       'api::product.product': ApiProductProduct;
       'api::receta.receta': ApiRecetaReceta;
