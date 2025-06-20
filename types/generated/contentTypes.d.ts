@@ -512,7 +512,9 @@ export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
     referencias: Schema.Attribute.Text;
     telefono: Schema.Attribute.BigInteger;
     tipoEntrega: Schema.Attribute.Enumeration<['domicilio', 'local']>;
-    tipoPago: Schema.Attribute.Enumeration<['mercado_pago', 'efectivo']>;
+    tipoPago: Schema.Attribute.Enumeration<
+      ['mercado pago', 'efectivo', 'Eleg\u00EDs al momento de pagar']
+    >;
     total: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

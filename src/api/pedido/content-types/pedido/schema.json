@@ -52,8 +52,9 @@
     "tipoPago": {
       "type": "enumeration",
       "enum": [
-        "mercado_pago",
-        "efectivo"
+        "mercado pago",
+        "efectivo",
+        "Elegís al momento de pagar"
       ]
     },
     "payment_id": {
