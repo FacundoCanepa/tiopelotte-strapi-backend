@@ -464,7 +464,6 @@ export interface ApiPedidoPedido extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     nombre: Schema.Attribute.String;
     payment_id: Schema.Attribute.String & Schema.Attribute.Unique;
-    pedidoToken: Schema.Attribute.UID;
     publishedAt: Schema.Attribute.DateTime;
     referencias: Schema.Attribute.Text;
     telefono: Schema.Attribute.BigInteger;

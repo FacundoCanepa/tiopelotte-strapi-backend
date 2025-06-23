@@ -60,9 +60,6 @@
     "payment_id": {
       "type": "string",
       "unique": true
-    },
-    "pedidoToken": {
-      "type": "uid"
     }
   }
 }
