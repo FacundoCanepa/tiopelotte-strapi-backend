@@ -111,6 +111,12 @@
       "relation": "manyToMany",
       "target": "api::receta.receta",
       "mappedBy": "products"
+    },
+    "stock_movements": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::stock-movement.stock-movement",
+      "mappedBy": "product"
     }
   }
 }

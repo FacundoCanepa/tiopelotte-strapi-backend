@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "expenses",
+  "info": {
+    "singularName": "expense",
+    "pluralName": "expenses",
+    "displayName": "expense",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "date": {
+      "type": "date"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "insumos",
+        "servicios",
+        "alquiler",
+        "sueldos",
+        "logistica",
+        "mantenimiento",
+        "impuestos",
+        "otros"
+      ]
+    },
+    "amount": {
+      "type": "decimal"
+    },
+    "paymentMethod": {
+      "type": "enumeration",
+      "enum": [
+        "efectivo ",
+        "debito ",
+        "mercadoPago ",
+        "trasferencia Banco"
+      ]
+    },
+    "note": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_line_lines",
+  "info": {
+    "displayName": "line",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "ingredientes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ingrediente.ingrediente"
+    },
+    "qty": {
+      "type": "decimal"
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "kg",
+        "gr",
+        "unidad ",
+        "docena",
+        "litros ",
+        "planchas ",
+        "cajas "
+      ]
+    },
+    "unitPrice": {
+      "type": "decimal"
+    },
+    "subtotal": {
+      "type": "decimal"
+    }
+  }
+}

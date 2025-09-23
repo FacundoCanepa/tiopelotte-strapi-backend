@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "suppliers",
+  "info": {
+    "singularName": "supplier",
+    "pluralName": "suppliers",
+    "displayName": "supplier",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "ingredientes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ingrediente.ingrediente",
+      "mappedBy": "supplier"
+    },
+    "ingredient_supplier_prices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ingredient-supplier-price.ingredient-supplier-price",
+      "mappedBy": "supplier"
+    }
+  }
+}

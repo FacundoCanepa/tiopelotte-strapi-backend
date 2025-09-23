@@ -31,6 +31,24 @@
     },
     "stockUpdatedAt": {
       "type": "datetime"
+    },
+    "stock_movement": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::stock-movement.stock-movement",
+      "inversedBy": "ingredientes"
+    },
+    "supplier": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::supplier.supplier",
+      "inversedBy": "ingredientes"
+    },
+    "ingredient_supplier_prices": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ingredient-supplier-price.ingredient-supplier-price",
+      "mappedBy": "ingrediente"
     }
   }
 }

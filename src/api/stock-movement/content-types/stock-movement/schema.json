@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stock_movements",
+  "info": {
+    "singularName": "stock-movement",
+    "pluralName": "stock-movements",
+    "displayName": "stock-movement",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "stock_movements"
+    },
+    "ingredientes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ingrediente.ingrediente",
+      "mappedBy": "stock_movement"
+    },
+    "quantity": {
+      "type": "decimal"
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "kg",
+        "gr",
+        "unidad ",
+        "docena",
+        "litros ",
+        "planchas ",
+        "cajas "
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "IN",
+        "OUT",
+        "ADJUST"
+      ]
+    },
+    "reason": {
+      "type": "enumeration",
+      "enum": [
+        "venta",
+        "compra",
+        "produccion",
+        "merma",
+        "ajuste"
+      ]
+    },
+    "note": {
+      "type": "text"
+    },
+    "performedBy": {
+      "type": "string"
+    },
+    "sourceOrder": {
+      "type": "string"
+    },
+    "resultingStock": {
+      "type": "decimal"
+    }
+  }
+}

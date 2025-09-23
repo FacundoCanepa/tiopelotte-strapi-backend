@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ingredient_supplier_prices",
+  "info": {
+    "singularName": "ingredient-supplier-price",
+    "pluralName": "ingredient-supplier-prices",
+    "displayName": "ingredient-supplier-price",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "ingrediente": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::ingrediente.ingrediente",
+      "inversedBy": "ingredient_supplier_prices"
+    },
+    "supplier": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::supplier.supplier",
+      "inversedBy": "ingredient_supplier_prices"
+    },
+    "unitPrice": {
+      "type": "decimal"
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "ARS"
+      ]
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "kg",
+        "gr",
+        "unidad ",
+        "docena",
+        "litros ",
+        "planchas ",
+        "cajas "
+      ]
+    },
+    "minOrderQty": {
+      "type": "decimal"
+    },
+    "validFrom": {
+      "type": "date"
+    }
+  }
+}

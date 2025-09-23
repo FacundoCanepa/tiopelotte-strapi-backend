@@ -401,6 +401,93 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiExpenseExpense extends Struct.CollectionTypeSchema {
+  collectionName: 'expenses';
+  info: {
+    description: '';
+    displayName: 'expense';
+    pluralName: 'expenses';
+    singularName: 'expense';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    amount: Schema.Attribute.Decimal;
+    category: Schema.Attribute.Enumeration<
+      [
+        'insumos',
+        'servicios',
+        'alquiler',
+        'sueldos',
+        'logistica',
+        'mantenimiento',
+        'impuestos',
+        'otros',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::expense.expense'
+    > &
+      Schema.Attribute.Private;
+    note: Schema.Attribute.String;
+    paymentMethod: Schema.Attribute.Enumeration<
+      ['efectivo ', 'debito ', 'mercadoPago ', 'trasferencia Banco']
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiIngredientSupplierPriceIngredientSupplierPrice
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'ingredient_supplier_prices';
+  info: {
+    description: '';
+    displayName: 'ingredient-supplier-price';
+    pluralName: 'ingredient-supplier-prices';
+    singularName: 'ingredient-supplier-price';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    currency: Schema.Attribute.Enumeration<['ARS']>;
+    ingrediente: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::ingrediente.ingrediente'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ingredient-supplier-price.ingredient-supplier-price'
+    > &
+      Schema.Attribute.Private;
+    minOrderQty: Schema.Attribute.Decimal;
+    publishedAt: Schema.Attribute.DateTime;
+    supplier: Schema.Attribute.Relation<'manyToOne', 'api::supplier.supplier'>;
+    unit: Schema.Attribute.Enumeration<
+      ['kg', 'gr', 'unidad ', 'docena', 'litros ', 'planchas ', 'cajas ']
+    >;
+    unitPrice: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    validFrom: Schema.Attribute.Date;
+  };
+}
+
 export interface ApiIngredienteIngrediente extends Struct.CollectionTypeSchema {
   collectionName: 'ingredientes';
   info: {
@@ -416,6 +503,10 @@ export interface ApiIngredienteIngrediente extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    ingredient_supplier_prices: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ingredient-supplier-price.ingredient-supplier-price'
+    >;
     ingredienteName: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -427,7 +518,12 @@ export interface ApiIngredienteIngrediente extends Struct.CollectionTypeSchema {
     products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     Stock: Schema.Attribute.Decimal;
+    stock_movement: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::stock-movement.stock-movement'
+    >;
     stockUpdatedAt: Schema.Attribute.DateTime;
+    supplier: Schema.Attribute.Relation<'manyToOne', 'api::supplier.supplier'>;
     unidadMedida: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -522,6 +618,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     recetas: Schema.Attribute.Relation<'manyToMany', 'api::receta.receta'>;
     slug: Schema.Attribute.UID<'productName'>;
     stock: Schema.Attribute.Decimal;
+    stock_movements: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::stock-movement.stock-movement'
+    >;
     stockUpdatedAt: Schema.Attribute.DateTime;
     taste: Schema.Attribute.Enumeration<
       [
@@ -540,6 +640,45 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     >;
     tiempoEstimado: Schema.Attribute.String;
     unidadMedida: Schema.Attribute.Enumeration<['kg', 'planchas', 'unidad']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPurchaseOrderPurchaseOrder
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'purchase_orders';
+  info: {
+    description: '';
+    displayName: 'purchase-order';
+    pluralName: 'purchase-orders';
+    singularName: 'purchase-order';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    code: Schema.Attribute.UID;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    estado: Schema.Attribute.Enumeration<
+      ['draft', 'ordered', 'received', 'canceled']
+    >;
+    expectedAt: Schema.Attribute.Date;
+    Line: Schema.Attribute.Component<'line.line', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::purchase-order.purchase-order'
+    > &
+      Schema.Attribute.Private;
+    notes: Schema.Attribute.String;
+    orderedAt: Schema.Attribute.Date;
+    publishedAt: Schema.Attribute.DateTime;
+    receivedAt: Schema.Attribute.Date;
+    total: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -576,6 +715,91 @@ export interface ApiRecetaReceta extends Struct.CollectionTypeSchema {
     slug: Schema.Attribute.UID<'titulo'>;
     tiempo: Schema.Attribute.String;
     titulo: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStockMovementStockMovement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'stock_movements';
+  info: {
+    description: '';
+    displayName: 'stock-movement';
+    pluralName: 'stock-movements';
+    singularName: 'stock-movement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ingredientes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ingrediente.ingrediente'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::stock-movement.stock-movement'
+    > &
+      Schema.Attribute.Private;
+    note: Schema.Attribute.Text;
+    performedBy: Schema.Attribute.String;
+    product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
+    publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.Decimal;
+    reason: Schema.Attribute.Enumeration<
+      ['venta', 'compra', 'produccion', 'merma', 'ajuste']
+    >;
+    resultingStock: Schema.Attribute.Decimal;
+    sourceOrder: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['IN', 'OUT', 'ADJUST']>;
+    unit: Schema.Attribute.Enumeration<
+      ['kg', 'gr', 'unidad ', 'docena', 'litros ', 'planchas ', 'cajas ']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSupplierSupplier extends Struct.CollectionTypeSchema {
+  collectionName: 'suppliers';
+  info: {
+    description: '';
+    displayName: 'supplier';
+    pluralName: 'suppliers';
+    singularName: 'supplier';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    active: Schema.Attribute.Boolean;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ingredient_supplier_prices: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ingredient-supplier-price.ingredient-supplier-price'
+    >;
+    ingredientes: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ingrediente.ingrediente'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::supplier.supplier'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    phone: Schema.Attribute.BigInteger;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1120,10 +1344,15 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::category.category': ApiCategoryCategory;
+      'api::expense.expense': ApiExpenseExpense;
+      'api::ingredient-supplier-price.ingredient-supplier-price': ApiIngredientSupplierPriceIngredientSupplierPrice;
       'api::ingrediente.ingrediente': ApiIngredienteIngrediente;
       'api::pedido.pedido': ApiPedidoPedido;
       'api::product.product': ApiProductProduct;
+      'api::purchase-order.purchase-order': ApiPurchaseOrderPurchaseOrder;
       'api::receta.receta': ApiRecetaReceta;
+      'api::stock-movement.stock-movement': ApiStockMovementStockMovement;
+      'api::supplier.supplier': ApiSupplierSupplier;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

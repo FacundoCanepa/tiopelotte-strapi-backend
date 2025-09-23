@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "purchase_orders",
+  "info": {
+    "singularName": "purchase-order",
+    "pluralName": "purchase-orders",
+    "displayName": "purchase-order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "code": {
+      "type": "uid"
+    },
+    "estado": {
+      "type": "enumeration",
+      "enum": [
+        "draft",
+        "ordered",
+        "received",
+        "canceled"
+      ]
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "orderedAt": {
+      "type": "date"
+    },
+    "expectedAt": {
+      "type": "date"
+    },
+    "receivedAt": {
+      "type": "date"
+    },
+    "Line": {
+      "type": "component",
+      "repeatable": true,
+      "component": "line.line"
+    }
+  }
+}
