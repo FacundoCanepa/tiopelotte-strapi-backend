@@ -4,7 +4,8 @@
   "info": {
     "singularName": "categoria-ingrediente",
     "pluralName": "categoria-ingredientes",
-    "displayName": "categoria_ingrediente"
+    "displayName": "categoria_ingrediente",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,15 +14,17 @@
     "nombre": {
       "type": "string"
     },
-    "ingrediente": {
+    "ingredientes": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::ingrediente.ingrediente"
+      "relation": "oneToMany",
+      "target": "api::ingrediente.ingrediente",
+      "mappedBy": "categoria_ingrediente"
     },
-    "ingredient_supplier_price": {
+    "ingredient_supplier_prices": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::ingredient-supplier-price.ingredient-supplier-price"
+      "relation": "oneToMany",
+      "target": "api::ingredient-supplier-price.ingredient-supplier-price",
+      "mappedBy": "categoria_ingrediente"
     }
   }
 }

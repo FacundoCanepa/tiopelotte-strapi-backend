@@ -49,6 +49,12 @@
     },
     "validFrom": {
       "type": "date"
+    },
+    "categoria_ingrediente": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::categoria-ingrediente.categoria-ingrediente",
+      "inversedBy": "ingredient_supplier_prices"
     }
   }
 }

@@ -373,6 +373,7 @@ export interface ApiCategoriaIngredienteCategoriaIngrediente
   extends Struct.CollectionTypeSchema {
   collectionName: 'categoria_ingredientes';
   info: {
+    description: '';
     displayName: 'categoria_ingrediente';
     pluralName: 'categoria-ingredientes';
     singularName: 'categoria-ingrediente';
@@ -384,12 +385,12 @@ export interface ApiCategoriaIngredienteCategoriaIngrediente
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    ingredient_supplier_price: Schema.Attribute.Relation<
-      'oneToOne',
+    ingredient_supplier_prices: Schema.Attribute.Relation<
+      'oneToMany',
       'api::ingredient-supplier-price.ingredient-supplier-price'
     >;
-    ingrediente: Schema.Attribute.Relation<
-      'oneToOne',
+    ingredientes: Schema.Attribute.Relation<
+      'oneToMany',
       'api::ingrediente.ingrediente'
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -497,6 +498,10 @@ export interface ApiIngredientSupplierPriceIngredientSupplierPrice
     draftAndPublish: true;
   };
   attributes: {
+    categoria_ingrediente: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::categoria-ingrediente.categoria-ingrediente'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -537,6 +542,10 @@ export interface ApiIngredienteIngrediente extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    categoria_ingrediente: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::categoria-ingrediente.categoria-ingrediente'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
