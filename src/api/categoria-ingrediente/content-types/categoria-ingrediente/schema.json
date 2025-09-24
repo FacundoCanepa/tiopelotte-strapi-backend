@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categoria_ingredientes",
+  "info": {
+    "singularName": "categoria-ingrediente",
+    "pluralName": "categoria-ingredientes",
+    "displayName": "categoria_ingrediente"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    },
+    "ingrediente": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::ingrediente.ingrediente"
+    },
+    "ingredient_supplier_price": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::ingredient-supplier-price.ingredient-supplier-price"
+    }
+  }
+}

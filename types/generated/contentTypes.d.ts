@@ -369,6 +369,43 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCategoriaIngredienteCategoriaIngrediente
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'categoria_ingredientes';
+  info: {
+    displayName: 'categoria_ingrediente';
+    pluralName: 'categoria-ingredientes';
+    singularName: 'categoria-ingrediente';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ingredient_supplier_price: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::ingredient-supplier-price.ingredient-supplier-price'
+    >;
+    ingrediente: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::ingrediente.ingrediente'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::categoria-ingrediente.categoria-ingrediente'
+    > &
+      Schema.Attribute.Private;
+    nombre: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -1343,6 +1380,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::categoria-ingrediente.categoria-ingrediente': ApiCategoriaIngredienteCategoriaIngrediente;
       'api::category.category': ApiCategoryCategory;
       'api::expense.expense': ApiExpenseExpense;
       'api::ingredient-supplier-price.ingredient-supplier-price': ApiIngredientSupplierPriceIngredientSupplierPrice;
