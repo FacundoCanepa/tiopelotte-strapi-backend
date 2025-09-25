@@ -553,6 +553,7 @@ export interface ApiIngredienteIngrediente extends Struct.CollectionTypeSchema {
       'api::ingredient-supplier-price.ingredient-supplier-price'
     >;
     ingredienteName: Schema.Attribute.String;
+    ingredienteNameProducion: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

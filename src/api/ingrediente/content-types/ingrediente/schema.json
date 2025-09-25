@@ -58,6 +58,9 @@
     },
     "quantityNeto": {
       "type": "decimal"
+    },
+    "ingredienteNameProducion": {
+      "type": "string"
     }
   }
 }
