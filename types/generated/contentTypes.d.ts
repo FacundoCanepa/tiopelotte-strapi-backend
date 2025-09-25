@@ -518,10 +518,9 @@ export interface ApiIngredientSupplierPriceIngredientSupplierPrice
       Schema.Attribute.Private;
     minOrderQty: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
+    quantityNeto: Schema.Attribute.Decimal;
     supplier: Schema.Attribute.Relation<'manyToOne', 'api::supplier.supplier'>;
-    unit: Schema.Attribute.Enumeration<
-      ['kg', 'gr', 'unidad ', 'docena', 'litros ', 'planchas ', 'cajas ']
-    >;
+    unit: Schema.Attribute.String;
     unitPrice: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -563,6 +562,7 @@ export interface ApiIngredienteIngrediente extends Struct.CollectionTypeSchema {
     precio: Schema.Attribute.Decimal;
     products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
+    quantityNeto: Schema.Attribute.Decimal;
     Stock: Schema.Attribute.Decimal;
     stock_movement: Schema.Attribute.Relation<
       'manyToOne',

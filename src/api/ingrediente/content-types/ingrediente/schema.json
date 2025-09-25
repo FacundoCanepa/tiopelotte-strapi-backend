@@ -55,6 +55,9 @@
       "relation": "manyToOne",
       "target": "api::categoria-ingrediente.categoria-ingrediente",
       "inversedBy": "ingredientes"
+    },
+    "quantityNeto": {
+      "type": "decimal"
     }
   }
 }

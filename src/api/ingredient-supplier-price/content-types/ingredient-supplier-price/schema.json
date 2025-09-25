@@ -32,18 +32,6 @@
         "ARS"
       ]
     },
-    "unit": {
-      "type": "enumeration",
-      "enum": [
-        "kg",
-        "gr",
-        "unidad ",
-        "docena",
-        "litros ",
-        "planchas ",
-        "cajas "
-      ]
-    },
     "minOrderQty": {
       "type": "decimal"
     },
@@ -55,6 +43,12 @@
       "relation": "manyToOne",
       "target": "api::categoria-ingrediente.categoria-ingrediente",
       "inversedBy": "ingredient_supplier_prices"
+    },
+    "quantityNeto": {
+      "type": "decimal"
+    },
+    "unit": {
+      "type": "string"
     }
   }
 }
