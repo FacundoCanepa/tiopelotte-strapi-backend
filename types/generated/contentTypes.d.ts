@@ -485,6 +485,52 @@ export interface ApiExpenseExpense extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFabricacionFabricacion extends Struct.CollectionTypeSchema {
+  collectionName: 'fabricacions';
+  info: {
+    description: 'F\u00F3rmula/BOM y costos por batch para un producto';
+    displayName: 'Fabricacion';
+    pluralName: 'fabricacions';
+    singularName: 'fabricacion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    batchSize: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<1>;
+    costoEmpaque: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
+    costoManoObra: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
+    costoTotalBatch: Schema.Attribute.Decimal;
+    costoUnitario: Schema.Attribute.Decimal;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ingredientesCostoTotal: Schema.Attribute.Decimal;
+    lastCalculatedAt: Schema.Attribute.DateTime;
+    lineas: Schema.Attribute.Component<'line.fabricacion-components', true> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::fabricacion.fabricacion'
+    > &
+      Schema.Attribute.Private;
+    margenObjetivoPct: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
+    margenRealPct: Schema.Attribute.Decimal;
+    mermaPct: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
+    nombre: Schema.Attribute.String & Schema.Attribute.Required;
+    overheadPct: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0>;
+    precioSugerido: Schema.Attribute.Decimal;
+    product: Schema.Attribute.Relation<'manyToOne', 'api::product.product'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiIngredientSupplierPriceIngredientSupplierPrice
   extends Struct.CollectionTypeSchema {
   collectionName: 'ingredient_supplier_prices';
@@ -641,6 +687,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
     descriptionCorta: Schema.Attribute.String;
+    fabricaciones: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::fabricacion.fabricacion'
+    >;
     img: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     img_carousel: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
@@ -1393,6 +1443,7 @@ declare module '@strapi/strapi' {
       'api::categoria-ingrediente.categoria-ingrediente': ApiCategoriaIngredienteCategoriaIngrediente;
       'api::category.category': ApiCategoryCategory;
       'api::expense.expense': ApiExpenseExpense;
+      'api::fabricacion.fabricacion': ApiFabricacionFabricacion;
       'api::ingredient-supplier-price.ingredient-supplier-price': ApiIngredientSupplierPriceIngredientSupplierPrice;
       'api::ingrediente.ingrediente': ApiIngredienteIngrediente;
       'api::pedido.pedido': ApiPedidoPedido;

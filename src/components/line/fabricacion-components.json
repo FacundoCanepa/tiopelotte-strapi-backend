@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_line_fabricacion_components",
+  "info": {
+    "displayName": "fabricacion-components",
+    "description": "Líneas de insumos por batch (BOM) para fabricación"
+  },
+  "options": {},
+  "attributes": {
+    "ingredient": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::ingrediente.ingrediente",
+      "required": true
+    },
+    "cantidad": {
+      "type": "decimal",
+      "required": true
+    },
+    "unidad": {
+      "type": "string",
+      "required": true
+    },
+    "mermaPct": {
+      "type": "decimal",
+      "default": 0
+    },
+    "nota": {
+      "type": "text"
+    }
+  }
+}
