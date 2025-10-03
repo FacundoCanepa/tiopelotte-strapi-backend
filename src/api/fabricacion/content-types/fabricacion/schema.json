@@ -53,11 +53,23 @@
       "type": "decimal",
       "default": 0
     },
-    "ingredientesCostoTotal": { "type": "decimal" },
-    "costoTotalBatch": { "type": "decimal" },
-    "costoUnitario": { "type": "decimal" },
-    "precioSugerido": { "type": "decimal" },
-    "margenRealPct": { "type": "decimal" },
-    "lastCalculatedAt": { "type": "datetime" }
+    "ingredientesCostoTotal": {
+      "type": "decimal"
+    },
+    "costoTotalBatch": {
+      "type": "decimal"
+    },
+    "costoUnitario": {
+      "type": "decimal"
+    },
+    "precioSugerido": {
+      "type": "decimal"
+    },
+    "margenRealPct": {
+      "type": "decimal"
+    },
+    "lastCalculatedAt": {
+      "type": "datetime"
+    }
   }
 }

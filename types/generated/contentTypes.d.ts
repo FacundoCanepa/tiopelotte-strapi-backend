@@ -733,6 +733,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
         'flan',
         'chocotorta',
         'pastafrola',
+        'pizzas',
+        'Lasa\u00F1a',
       ]
     >;
     tiempoEstimado: Schema.Attribute.String;

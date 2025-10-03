@@ -25,7 +25,12 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "active": {
       "type": "boolean",
@@ -36,7 +41,11 @@
     },
     "unidadMedida": {
       "type": "enumeration",
-      "enum": ["kg", "planchas", "unidad"]
+      "enum": [
+        "kg",
+        "planchas",
+        "unidad"
+      ]
     },
     "taste": {
       "type": "enumeration",
@@ -51,7 +60,9 @@
         "queso",
         "flan",
         "chocotorta",
-        "pastafrola"
+        "pastafrola",
+        "pizzas",
+        "Lasaña"
       ]
     },
     "isFeatured": {
@@ -72,7 +83,12 @@
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "stock": {
       "type": "decimal"
